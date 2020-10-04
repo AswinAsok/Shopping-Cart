@@ -20,13 +20,18 @@ module.exports={
                 bcrypt.compare(userData.Password,user.Password).then((status)=>{
                     if(status){
                         console.log("Success");
+                        response.user = user
+                        response.status = true
+                        resolve(response)
                     }
                     else{
-                        console.log("False");
+                        console.log("Password didn't match with email");
+                        resolve({status: false})
                     }
                 })
             }else{
-                console.log("Failed");
+                console.log("User not found, Please Signup");
+                resolve({status:false})
             }
         })
     }
