@@ -2,6 +2,9 @@
     <div class="col-md-6 m-auto">
         <div class="container mt-5 pl-5">
             <h2 class="text-center">Login</h2>
+            {{#if loginError}}
+                <p class="error">Invalid Username or Password</p>
+            {{/if}}
                 <form action="/login" method="POST">
                     <div class="form-group">
                         <label>Email Address</label>
