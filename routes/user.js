@@ -3,6 +3,15 @@ var router = express.Router();
 const productHelpers = require('../helpers/product-helpers');
 const userHelper = require('../helpers/user-helpers')
 
+const verifyLogin = (req,res)=>{
+  if(req.session.loggedIn){
+    next()
+  }
+  else{
+    res.redirect("/login")
+  }
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let user = req.session.user
@@ -38,15 +47,19 @@ router.post('/login',(req,res)=>{
       res.redirect('/')
     }
     else{
-      req.session.loginError = true
+      req.session.loginError = "Invaild Username or Password"
       res.redirect('/login') 
     }
   })
 })
 
-router.get('/logout',(req,res)=>{
+router.get('/logout',(req,res,next)=>{
   req.session.destroy()
   res.redirect("/")
+})
+
+router.get("/cart",verifyLogin, (req,res)=>{
+  res.render("user/cart")
 })
 
 module.exports = router;
