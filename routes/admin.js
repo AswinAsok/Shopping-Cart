@@ -40,4 +40,10 @@ router.get("/delete-product/:id",(req,res)=>{
 
 })
 
+router.get("/edit-product/:id",async (req,res)=>{
+  let product = await productHelpers.getAllProductDetails(req.params.id)
+  console.log(product);
+  res.render("admin/edit-product",{product})
+})
+
 module.exports = router;
