@@ -4,7 +4,7 @@
 
             <div class="col-md-6">
                 <h2 class="text-center">Edit Product</h2>
-                <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+                <form action="/admin/edit-product/{{product._id}}" method="POST" enctype="multipart/form-data">
                     <label for = "">Name</label>
                     <input type = "text" name = "Name" class = "form-control" value="{{product.Name}}">
 
